@@ -1,3 +1,5 @@
+console.log("Starting bot...");
+
 const express = require("express");
 const { Client, GatewayIntentBits } = require("discord.js");
 
@@ -18,11 +20,11 @@ client.on("ready", () => {
 });
 
 client.on("messageCreate", (message) => {
-  if (message.author.bot) return;
-
   if (message.content === "ping") {
     message.reply("pong");
   }
 });
 
-client.login(process.env.TOKEN);
+client.login(process.env.TOKEN).catch(err => {
+  console.error("LOGIN ERROR:", err);
+});
